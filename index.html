@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espressolab</title>
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.7/dist/cdn.min.js"></script>
+</head>
+
+<body style="background-color: rgb(0, 0, 0);">
+    <header x-data="{ menuitems: [
+        {href: '#slider', title: 'ANASAYFA'},
+        {href: '#about', title: 'ESPRESSOLAB'},
+        {href: '#menu', title: 'MENÜ'},
+        {href: '#references', title: 'BAHSETMELER'},
+        {href: '#contact', title: 'İLETİŞİM'},
+        ]}" class="absolute z-50 top-0 w-full">
+        <div class="container mx-auto py-4 flex flex-row item-center">
+            <a href="">
+                <img src="./img/logo.png" alt="Espressolab" class="lg:w-[170px]">
+            </a>
+            <nav class="flex items-center justify-center gap-6 pl-6 ml-6 border-l border-gray-200 text-base">
+                <template x-for="(menuitem, index) in menuitems" :key="index">
+                    <a x-bind:href="menuitem.href" x-text="menuitem.title" class="font-medium text-white hover:underline"></a>
+                </template>
+            </nav>
+            <div class="ml-auto">
+                <a href="" class="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded shadow"> REZERVASYON YAP</a>
+            </div>
+        </div>
+    </header>
+    <div id="slider" x-data="slider" class="relative w-full h-screen overflow-hidden bg-black">
+        <template x-for="(slide, index) in slides" :key="index">
+            <figure x-show="currentIndex == index">
+                <img x-bind:src="slide" class="w-full h-full object-cover"/>
+            </figure>
+        </template>
+        <button class="absolute left-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:gray-200">
+            
+        </button>
+    </div>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('slider', () => ({
+                slides: [
+                    './img/banner/1112022-ciftlik-banner-161826.jpg',
+                    './img/banner/1272024-web_banner-19-171611.jpg',
+                    './img/banner/16112023-webbanner_belcikacikolatasi_tr-12558.jpg',
+                    './img/banner/2742024-web_banner-13413.jpg',
+                ],
+                currentIndex: 0,
+            }))
+        })
+    </script>
+</body>
+</html>
